@@ -1,16 +1,27 @@
 import { useLoaderData } from "react-router-dom";
 
 import { getMenu } from "../../services/apiRestaurant";
+import MenuItem from "./MenuItem";
+
+import { PizzaType } from "../../Types";
 
 function Menu() {
-  const menu = useLoaderData();
+  const menu: PizzaType[] = useLoaderData();
 
-  console.log(menu);
-  return <h1>Menu</h1>;
+  return (
+    <ul>
+      {menu.map((pizza) => (
+        <MenuItem pizza={pizza} key={pizza.id} />
+      ))}
+    </ul>
+  );
 }
 
+/**
+ * Render as you fetch strategy
+ */
 export async function loader() {
-  const menu = await getMenu();
+  const menu: Menu[] = await getMenu();
   return menu;
 }
 
