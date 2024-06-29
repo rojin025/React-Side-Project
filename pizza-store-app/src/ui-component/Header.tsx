@@ -1,8 +1,14 @@
+import { Link } from "react-router-dom";
+import SearchOrder from "../features/order/SearchOrder";
+
 function Header() {
   return (
-    <div>
-      <h2>Header</h2>
-    </div>
+    <header>
+      <Link to="/">Pizza Co.</Link>
+      <SearchOrder />
+
+      <p>Rojin</p>
+    </header>
   );
 }
 

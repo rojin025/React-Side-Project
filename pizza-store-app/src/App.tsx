@@ -6,6 +6,7 @@ import Cart from "./features/cart/Cart";
 import CreateOrder from "./features/order/CreateOrder";
 import Order from "./features/order/Order";
 import AppLayout from "./ui-component/AppLayout";
+import Error from "./ui-component/Error";
 
 /**
  * Data is fetching is done using loader
@@ -22,15 +23,20 @@ import AppLayout from "./ui-component/AppLayout";
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
+    errorElement: <Error />,
+
     children: [
       {
         path: "/",
         element: <Home />,
+        /** No errorElement is handling here; so it will be handled by parent errorElement.  */
       },
       {
         path: "/menu",
         element: <Menu />,
         loader: menuLoader,
+        errorElement: <Error />,
+        /** Each errorElement is handling there own route;  */
       },
       {
         path: "/cart",
