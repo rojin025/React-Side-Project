@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
+// @ts-ignore
 import Home from "./ui-component/Home";
 import Menu from "./features/menu/Menu";
 import Cart from "./features/cart/Cart";
