@@ -14,7 +14,7 @@ import Error from "./ui-component/Error";
  * Data is fetching is done using loader
  *  {
         path: "/menu",
-        element: <Menu />,
+        element: <Menu />,          
         loader: menuLoader,
       },
       advance feature we are avoding the traditional apporach of waterfall strategy fetaching data while loading the component.
