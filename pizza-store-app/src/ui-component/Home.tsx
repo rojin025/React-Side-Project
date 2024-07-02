@@ -1,6 +1,7 @@
 function Home() {
   return (
-    <div className="text-center my-10">
+    <div className="text-center my-10 sm:my-16">
+      {/* sm means value is added after the sm field. */}
       <h1 className="mb-8 text-xl font-semibold ">
         The best pizza.
         <br />
