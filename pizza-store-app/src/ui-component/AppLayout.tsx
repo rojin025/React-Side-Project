@@ -9,7 +9,7 @@ function AppLayout() {
   const isLoading = nav.state === "loading";
 
   return (
-    <div className="layout">
+    <div className="grid h-96 bg-red-50">
       {isLoading && <LoaderAnimation />}
       <Header />
 
