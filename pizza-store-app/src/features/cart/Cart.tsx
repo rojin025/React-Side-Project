@@ -30,10 +30,14 @@ function Cart() {
 
   return (
     <div>
-      <Link to="/menu">&larr; Back to menu</Link>
-
+      {" "}
+      <Link to="/menu" className="text-sm text-blue-400">
+        &larr;
+        <span className="hover:t hover:text-blue-600 hover:underline">
+          Back to menu
+        </span>
+      </Link>
       <h2>Your cart, %NAME%</h2>
-
       <div>
         <Link to="/order/new">Order pizzas</Link>
         <button>Clear cart</button>
