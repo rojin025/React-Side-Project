@@ -51,35 +51,38 @@ function CreateOrder() {
       <Form method="POST">
         <div>
           <label>First Name</label>
-          <input type="text" name="customer" required />
+          <input type="text" className="input" name="customer" required />
         </div>
-
         <div>
           <label>Phone number</label>
           <div>
-            <input type="tel" name="phone" required />
+            <input type="tel" name="phone" className="input" required />
           </div>
           {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
-
         <div>
           <label>Address</label>
           <div>
-            <input type="text" name="address" required />
+            <input
+              type="text"
+              name="address"
+              required
+              placeholder="1123 fairfield Iowa"
+              className="input"
+            />
           </div>
-        </div>
-
+        </div>{" "}
         <div>
           <input
             type="checkbox"
             name="priority"
             id="priority"
+            className="h-6 w-6 border border-stone-200 accent-yellow-400 focus:outline-none focus:ring focus:ring-yellow-400 focus:ring-offset-2"
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
           />
           <label htmlFor="priority">Want to yo give your order priority?</label>
         </div>
-
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <button
