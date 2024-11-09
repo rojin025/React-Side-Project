@@ -1,5 +1,7 @@
-import Logo from "./_components/Logo";
-import Navigation from "./_components/Navigatoin";
+import Logo from "@/app/_components/Logo";
+import Navigation from "@/app/_components/Navigation";
+
+import "@/app/_styles/globals.css";
 
 export const metadata = {
   title: "AirBnb",
@@ -13,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-primary-950 text-primary-100 min-h-screen">
         <header>
           <Logo />
           <Navigation />

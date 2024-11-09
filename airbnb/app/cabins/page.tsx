@@ -1,4 +1,4 @@
-import Counter from "../_components/Counter";
+import Counter from "@/app/_components/Counter";
 
 export interface UserInterface {
   id: number;
