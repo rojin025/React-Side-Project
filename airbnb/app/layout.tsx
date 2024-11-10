@@ -4,7 +4,10 @@ import Navigation from "@/app/_components/Navigation";
 import "@/app/_styles/globals.css";
 
 export const metadata = {
-  title: "AirBnb",
+  title: {
+    template: "%s | AirBnB",
+    default: "AirBnB",
+  },
   description: "Where home are rented",
 };
 

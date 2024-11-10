@@ -1,34 +1,10 @@
 import Counter from "@/app/_components/Counter";
 
-export interface UserInterface {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  address: Address;
-  phone: string;
-  website: string;
-  company: Company;
-}
+import { UserInterface } from "./_types";
 
-export interface Address {
-  street: string;
-  suite: string;
-  city: string;
-  zipcode: string;
-  geo: Geo;
-}
-
-export interface Geo {
-  lat: string;
-  lng: string;
-}
-
-export interface Company {
-  name: string;
-  catchPhrase: string;
-  bs: string;
-}
+export const metadata = {
+  title: "Cabins",
+};
 
 export default async function page() {
   const res = await fetch("https://jsonplaceholder.typicode.com/users");
