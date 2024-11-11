@@ -8,7 +8,7 @@ export const metadata = {
     template: "%s | AirBnB",
     default: "AirBnB",
   },
-  description: "Where home are rented",
+  description: "Where home are rented! This is for SEO.",
 };
 
 export default function RootLayout({
