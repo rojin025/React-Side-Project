@@ -1,10 +1,10 @@
-import { getCabin } from '@/app/_lib/data-service';
 import CabinCard from '@/app/_components/CabinCard';
+import { getCabins } from '../_lib/data-service';
 
 async function CabinList() {
-  const cabins = await getCabin();
+  const cabins = await getCabins();
 
-  if (!cabins.length) return null;
+  if (!cabins) return null;
 
   return (
     <div>

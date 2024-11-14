@@ -1,12 +1,18 @@
-import CabinList from '@/app/_components/CabinList';
+import { Suspense } from 'react';
 
-import { UserInterface } from './_types';
+import CabinList from '../_components/CabinList';
+import Spinner from '../_components/Spinner';
+
+import { getCabins } from '../_lib/data-service';
 
 export const metadata = {
   title: 'Cabins',
 };
 
 export default async function page() {
+  const cabins = await getCabins();
+  console.log(cabins);
+
   return (
     <div>
       <h1 className='mb-5 text-4xl font-medium text-accent-400'>Cabins</h1>
@@ -19,7 +25,9 @@ export default async function page() {
         Welcome to paradise.
       </p>
 
-      <CabinList />
+      <Suspense fallback={<Spinner />}>
+        <CabinList />
+      </Suspense>
     </div>
   );
 }

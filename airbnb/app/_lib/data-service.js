@@ -5,6 +5,7 @@ import { supabase } from './supabase';
 // GET
 
 export async function getCabin(id) {
+  console.log('Inside getcabin function ');
   const { data, error } = await supabase
     .from('cabins')
     .select('*')
