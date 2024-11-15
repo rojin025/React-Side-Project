@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { getCabin, getCabins } from '@/app/_lib/data-service';
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from '@heroicons/react/24/solid';
+import { CabinInterface } from '@/app/_components/CabinList';
 
 // export const metadata = {
 //   title: "Cabin",
@@ -31,11 +32,14 @@ export async function generateStaticParams() {
   return ids;
 }
 
-export default async function Page({ params }: any) {
+export default async function Page({
+  params,
+}: {
+  params: { cabinId: string };
+}) {
   const cabin = await getCabin(params.cabinId);
 
-  const { id, name, maxCapacity, regularPrice, discount, image, description } =
-    cabin;
+  const { name, maxCapacity, image, description } = cabin;
 
   return (
     <div className='mx-auto mt-8 max-w-6xl'>
