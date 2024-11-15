@@ -1,6 +1,7 @@
 import { eachDayOfInterval } from 'date-fns';
 import { supabase } from './supabase';
 import { notFound } from 'next/navigation';
+import { CabinInterface } from '../_components/CabinList';
 
 /////////////
 // GET
@@ -38,7 +39,7 @@ export async function getCabinPrice(id) {
   return data;
 }
 
-export const getCabins = async function () {
+export const getCabins = async function (): Promise<CabinInterface[]> {
   const { data, error } = await supabase
     .from('cabins')
     .select('id, name, maxCapacity, regularPrice, discount, image')
@@ -49,11 +50,11 @@ export const getCabins = async function () {
     throw new Error('Cabins could not be loaded');
   }
 
-  return data;
+  return data as CabinInterface[];
 };
 
 // Guests are uniquely identified by their email address
-export async function getGuest(email) {
+export async function getGuest(email: string) {
   const { data, error } = await supabase
     .from('guests')
     .select('*')
@@ -64,7 +65,7 @@ export async function getGuest(email) {
   return data;
 }
 
-export async function getBooking(id) {
+export async function getBooking(id: number) {
   const { data, error, count } = await supabase
     .from('bookings')
     .select('*')

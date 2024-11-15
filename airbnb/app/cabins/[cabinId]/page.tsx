@@ -6,7 +6,19 @@ import { EyeSlashIcon, MapPinIcon, UsersIcon } from '@heroicons/react/24/solid';
 //   title: "Cabin",
 // };
 
-export async function generateMetadata({ params }: any) {
+interface Params {
+  cabinId: string;
+}
+
+interface MetadataInterface {
+  title: string;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Params;
+}): Promise<MetadataInterface> {
   const { name } = await getCabin(params.cabinId);
   return { title: `Cabin ${name}` };
 }
