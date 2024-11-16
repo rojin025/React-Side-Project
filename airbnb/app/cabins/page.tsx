@@ -3,16 +3,14 @@ import { Suspense } from 'react';
 import CabinList from '../_components/CabinList';
 import Spinner from '../_components/Spinner';
 
-import { getCabins } from '../_lib/data-service';
+export const revalidate = 0;
+// export const revalidate = 3600;
 
 export const metadata = {
   title: 'Cabins',
 };
 
 export default async function page() {
-  const cabins = await getCabins();
-  console.log(cabins);
-
   return (
     <div>
       <h1 className='mb-5 text-4xl font-medium text-accent-400'>Cabins</h1>
