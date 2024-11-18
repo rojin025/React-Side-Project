@@ -2,6 +2,8 @@ import { Suspense } from 'react';
 
 import CabinList from '../_components/CabinList';
 import Spinner from '../_components/Spinner';
+import { ckb } from 'date-fns/locale';
+import FilterNavBar from '../_components/FilterNavBar';
 
 export const revalidate = 0;
 // export const revalidate = 3600;
@@ -10,7 +12,18 @@ export const metadata = {
   title: 'Cabins',
 };
 
-export default async function page() {
+interface PageProps {
+  searchParams: {
+    capacity?: string;
+  };
+}
+
+export default async function page({
+  searchParams: { capacity = 'all' },
+}: PageProps) {
+  const filter = capacity;
+  console.log(filter);
+
   return (
     <div>
       <h1 className='mb-5 text-4xl font-medium text-accent-400'>Cabins</h1>
@@ -23,8 +36,12 @@ export default async function page() {
         Welcome to paradise.
       </p>
 
+      <div className='mb-8 flex justify-end'>
+        <FilterNavBar />
+      </div>
+
       <Suspense fallback={<Spinner />}>
-        <CabinList />
+        <CabinList filter={filter} />
       </Suspense>
     </div>
   );
