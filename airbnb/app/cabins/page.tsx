@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 
 import CabinList from '../_components/CabinList';
 import Spinner from '../_components/Spinner';
-import { ckb } from 'date-fns/locale';
 import FilterNavBar from '../_components/FilterNavBar';
 
 export const revalidate = 0;
@@ -22,7 +21,6 @@ export default async function page({
   searchParams: { capacity = 'all' },
 }: PageProps) {
   const filter = capacity;
-  console.log(filter);
 
   return (
     <div>
@@ -40,7 +38,7 @@ export default async function page({
         <FilterNavBar />
       </div>
 
-      <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<Spinner />} key={filter}>
         <CabinList filter={filter} />
       </Suspense>
     </div>

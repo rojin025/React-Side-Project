@@ -3,28 +3,46 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 function FilterNavBar() {
-  const searchParams = useSearchParams();
+  const urlSearchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
 
+  const activeFilter = urlSearchParams.get('capacity') ?? 'all';
+
   function handleFilter(filter: string) {
-    const params = new URLSearchParams(searchParams);
-    params.set('capacity', filter);
-    router.replace(`${pathname}?${params.toString()}`);
+    const searchParams = new URLSearchParams(urlSearchParams);
+    searchParams.set('capacity', filter);
+    router.replace(`${pathname}?${searchParams.toString()}`);
   }
 
   return (
     <div className='flex border border-l-primary-800'>
-      <Button filter='all' handleFilter={handleFilter}>
+      <Button
+        filter='all'
+        handleFilter={handleFilter}
+        activeFilter={activeFilter}
+      >
         All Cabins
       </Button>
-      <Button filter='small' handleFilter={handleFilter}>
+      <Button
+        filter='small'
+        handleFilter={handleFilter}
+        activeFilter={activeFilter}
+      >
         Small
       </Button>
-      <Button filter='medium' handleFilter={handleFilter}>
+      <Button
+        filter='medium'
+        handleFilter={handleFilter}
+        activeFilter={activeFilter}
+      >
         Medium
       </Button>
-      <Button filter='large' handleFilter={handleFilter}>
+      <Button
+        filter='large'
+        handleFilter={handleFilter}
+        activeFilter={activeFilter}
+      >
         Large
       </Button>
     </div>
@@ -35,12 +53,13 @@ interface ButtonProps {
   children: React.ReactNode;
   filter: string;
   handleFilter: (filter: string) => void;
+  activeFilter: string;
 }
 
-function Button({ children, filter, handleFilter }: ButtonProps) {
+function Button({ children, filter, handleFilter, activeFilter }: ButtonProps) {
   return (
     <button
-      className='px-5 py-2 hover:bg-primary-700'
+      className={`px-5 py-2 hover:bg-primary-700 ${activeFilter === filter ? 'bg-primary-700 text-primary-50' : ''}`}
       onClick={() => handleFilter(filter)}
     >
       {children}
