@@ -2,6 +2,7 @@ import { eachDayOfInterval } from 'date-fns';
 import { supabase } from './supabase';
 import { notFound } from 'next/navigation';
 import { CabinInterface } from '../_components/CabinList';
+import { Interface } from 'readline';
 
 /////////////
 // GET
@@ -127,9 +128,18 @@ export async function getBookedDatesByCabinId(cabinId: string) {
   return bookedDates;
 }
 
-export async function getSettings() {
+export interface SettingsInterface {
+  id: number;
+  created_at: string;
+  minBookingLength: number;
+  maxBookingLength: number;
+  breakfast: number;
+  maxGuestsPerBooking: number;
+}
+
+export async function getSettings(): Promise<SettingsInterface> {
   const { data, error } = await supabase.from('settings').select('*').single();
-  await new Promise((res) => setTimeout(res, 1000));
+  // await new Promise((res) => setTimeout(res, 1000));
 
   if (error) {
     console.error(error);
