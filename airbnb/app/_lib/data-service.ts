@@ -7,7 +7,6 @@ import { CabinInterface } from '../_components/CabinList';
 // GET
 
 export async function getCabin(id: string) {
-  console.log('Inside getcabin function ');
   const { data, error } = await supabase
     .from('cabins')
     .select('*')

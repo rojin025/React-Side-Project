@@ -29,21 +29,21 @@ function FilterNavBar() {
         handleFilter={handleFilter}
         activeFilter={activeFilter}
       >
-        Small
+        2&mdash;3 guests
       </Button>
       <Button
         filter='medium'
         handleFilter={handleFilter}
         activeFilter={activeFilter}
       >
-        Medium
+        4&mdash;7 guests
       </Button>
       <Button
         filter='large'
         handleFilter={handleFilter}
         activeFilter={activeFilter}
       >
-        Large
+        8&mdash;12 guests
       </Button>
     </div>
   );

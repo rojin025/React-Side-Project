@@ -17,8 +17,6 @@ interface CabinListProps {
 }
 
 async function CabinList({ filter }: CabinListProps) {
-  console.log('CablinLIst:', filter);
-
   const cabins: CabinInterface[] | null = await getCabins();
 
   if (!cabins) {
