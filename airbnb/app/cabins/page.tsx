@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 
 import CabinList from '../_components/CabinList';
+import ReservationReminder from '../_components/ReservationReminder';
 import Spinner from '../_components/Spinner';
 import FilterNavBar from '../_components/FilterNavBar';
 
@@ -40,6 +41,7 @@ export default async function page({
 
       <Suspense fallback={<Spinner />} key={filter}>
         <CabinList filter={filter} />
+        <ReservationReminder />
       </Suspense>
     </div>
   );
