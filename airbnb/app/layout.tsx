@@ -1,7 +1,7 @@
 import Header from '@/app/_components/Header';
 
 import { Josefin_Sans } from 'next/font/google';
-
+import { ReservationProvider } from '@/app/_components/ReservationContext';
 const josefin = Josefin_Sans({
   subsets: ['latin'],
   display: 'swap',
@@ -30,7 +30,9 @@ export default function RootLayout({
         <Header />
 
         <div className='grid flex-1 px-8 py-12'>
-          <main className='mx-auto w-full max-w-7xl'>{children}</main>
+          <main className='mx-auto w-full max-w-7xl'>
+            <ReservationProvider>{children}</ReservationProvider>
+          </main>
         </div>
 
         <footer>Copyright by the AirBnB</footer>

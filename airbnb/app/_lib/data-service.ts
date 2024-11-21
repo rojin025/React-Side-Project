@@ -98,7 +98,14 @@ export async function getBookings(guestId: string) {
   return data;
 }
 
-export async function getBookedDatesByCabinId(cabinId: string) {
+// type Booking = {
+//   startDate: string;
+//   endDate: string;
+// };
+
+export async function getBookedDatesByCabinId(
+  cabinId: string
+): Promise<Date[]> {
   const today = new Date();
   today.setUTCHours(0, 0, 0, 0);
   const todayStr = today.toISOString();
