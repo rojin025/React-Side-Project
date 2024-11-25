@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import { auth } from '@/app/_lib/auth';
 
-export default function Navigation() {
+export default async function Navigation() {
+  const session = await auth();
+
   return (
     <nav className='z-10 text-xl'>
       <ul className='flex items-center gap-16'>
