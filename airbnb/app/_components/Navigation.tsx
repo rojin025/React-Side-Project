@@ -3,6 +3,7 @@ import { auth } from '@/app/_lib/auth';
 
 export default async function Navigation() {
   const session = await auth();
+  console.log(session);
 
   return (
     <nav className='z-10 text-xl'>
@@ -24,12 +25,26 @@ export default async function Navigation() {
           </Link>
         </li>
         <li>
-          <Link
-            href='/account'
-            className='transition-colors hover:text-accent-400'
-          >
-            Guest
-          </Link>
+          {session?.user?.image ? (
+            <Link
+              href='/account'
+              className='transition-colors hover:text-accent-400'
+            >
+              <img
+                className='h-8 rounded-full'
+                src={session.user.image}
+                alt={session.user.name}
+              />
+              {session?.user?.name?.split(' ').at(0)}
+            </Link>
+          ) : (
+            <Link
+              href='/account'
+              className='transition-colors hover:text-accent-400'
+            >
+              Guest Area
+            </Link>
+          )}
         </li>
       </ul>
     </nav>
