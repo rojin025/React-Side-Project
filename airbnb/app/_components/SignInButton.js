@@ -1,8 +1,8 @@
-import { signIn } from '@/app/_lib/action';
+import { signInAction } from '@/app/_lib/action';
 
 function SignInButton() {
   return (
-    <form action={signIn}>
+    <form action={signInAction}>
       <button className='flex items-center gap-6 border border-primary-300 px-10 py-4 text-lg font-medium'>
         <img
           src='https://authjs.dev/img/providers/google.svg'
