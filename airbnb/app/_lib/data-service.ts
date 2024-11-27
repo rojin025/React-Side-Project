@@ -1,6 +1,7 @@
 import { eachDayOfInterval } from 'date-fns';
 import { supabase } from './supabase';
 import { notFound } from 'next/navigation';
+
 import { CabinInterface } from '../_components/CabinList';
 import { Interface } from 'readline';
 
@@ -169,17 +170,30 @@ export async function getCountries() {
 }
 
 /////////////
-// CREATE
+interface Guest {
+  email: string;
+  fullname: string;
+}
 
-export async function createGuest(newGuest: string) {
-  const { data, error } = await supabase.from('guests').insert([newGuest]);
+export async function createGuest(newGuest: Guest) {
+  console.log('newGuest', newGuest);
+  try {
+    const { data, error } = await supabase
+      .from('guests')
+      .insert([newGuest])
+      .select()
+      .single();
 
-  if (error) {
-    console.error(error);
-    throw new Error('Guest could not be created');
+    if (error) {
+      console.error('Supabase Insert Error:', error.message, error.details);
+      throw new Error(`Guest could not be created: ${error.message}`);
+    }
+
+    return data;
+  } catch (err) {
+    console.error('Unexpected error creating guest:', err);
+    throw err;
   }
-
-  return data;
 }
 
 export async function createBooking(newBooking: string) {
