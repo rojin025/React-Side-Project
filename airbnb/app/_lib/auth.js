@@ -11,22 +11,24 @@ export const authConfig = {
     }),
   ],
   callbacks: {
-    authorized({ auth, request }) {
+    authorized({ auth }) {
       return !!auth?.user;
     },
     async signIn({ user }) {
+      user = { fullName: 'Rojin Bijuckchhe', email: 'demo@mail.com' };
+
       try {
         const isGuest = await getGuest(user.email);
-        console.log(isGuest);
+        console.log('Guest: ', isGuest);
 
-        if (!isGuest) {
-          console.log('user:', user);
+        // if (!isGuest) {
+        //   console.log('user:', user);
 
-          await createGuest({
-            email: user.email,
-            fullName: user.name,
-          });
-        }
+        //   await createGuest({
+        //     email: user.email,
+        //     fullName: user.name,
+        //   });
+        // }
 
         return true;
       } catch {
@@ -34,7 +36,8 @@ export const authConfig = {
       }
     },
     async session({ session, user }) {
-      const guest = await getGuest(session.user.email);
+      // console.log(session);
+      const guest = await getGuest('demo@mail.com');
       session.user.guestId = guest.id;
       return session;
     },

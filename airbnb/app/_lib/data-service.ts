@@ -174,15 +174,12 @@ interface Guest {
   email: string;
   fullname: string;
 }
-
 export async function createGuest(newGuest: Guest) {
   console.log('newGuest', newGuest);
+
   try {
-    const { data, error } = await supabase
-      .from('guests')
-      .insert([newGuest])
-      .select()
-      .single();
+    const { data, error } = await supabase.from('guests').insert([newGuest]); // Use guestWithoutId instead of newGuest
+    console.log('Inserted data:', data);
 
     if (error) {
       console.error('Supabase Insert Error:', error.message, error.details);
