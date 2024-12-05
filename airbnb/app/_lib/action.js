@@ -12,6 +12,7 @@ export async function signOutAction() {
   await signOut({ redirectTo: '/' });
 }
 
+/** we can name anything for Formdata provided by nextJS API */
 export async function updateGuest(formData) {
   console.log(formData);
 }
