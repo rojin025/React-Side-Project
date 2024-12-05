@@ -19,7 +19,7 @@ export const authConfig = {
 
       try {
         const isGuest = await getGuest(user.email);
-        console.log('Guest: ', isGuest);
+        console.log('Auth | Guest: ', isGuest);
 
         // if (!isGuest) {
         //   console.log('user:', user);

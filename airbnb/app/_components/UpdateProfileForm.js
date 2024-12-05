@@ -3,12 +3,10 @@
 import { useState } from 'react';
 import { updateGuest } from '../_lib/action';
 
-function UpdateProfileForm({ children }) {
+function UpdateProfileForm({ children, guest }) {
   const [count, setCount] = useState();
 
-  // CHANGE
-  const countryFlag = 'pt.jpg';
-  const nationality = 'portugal';
+  const { fullName, email, nationalID, countryFlag, nationality } = guest;
 
   return (
     <form
@@ -19,6 +17,7 @@ function UpdateProfileForm({ children }) {
         <label>Full name</label>
         <input
           disabled
+          defaultValue={fullName}
           className='w-full rounded-sm bg-primary-200 px-5 py-3 text-primary-800 shadow-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400'
         />
       </div>
