@@ -59,6 +59,10 @@ function UpdateProfileForm({ children, guest }) {
   );
 }
 
+/**
+ * 
+has to be client compoenent to use "useFormStatus Hook."
+ */
 function Button() {
   const { pending } = useFormStatus();
 
