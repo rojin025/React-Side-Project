@@ -7,9 +7,14 @@ export const metadata = {
   title: 'Update profile',
 };
 
+/**
+    We always use get request on server components.
+
+ */
 export default async function Page() {
   const session = await auth();
-  const guest = await getGuest(session?.user?.email!);
+  // const guest = await getGuest(session?.user?.email!);
+  const guest = await getGuest('demo@mail.com');
 
   console.log('Session : ', session);
   console.log('Guest : ', guest);

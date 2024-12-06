@@ -15,7 +15,7 @@ export const authConfig = {
       return !!auth?.user;
     },
     async signIn({ user }) {
-      user = { fullName: 'Rojin Bijuckchhe', email: 'demo@mail.com' };
+      user = { fullName: 'Demo Account', email: 'demo@mail.com' };
 
       try {
         const isGuest = await getGuest(user.email);
