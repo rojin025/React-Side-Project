@@ -4,6 +4,8 @@ import { revalidatePath } from 'next/cache';
 import { auth, signIn, signOut } from './auth';
 import { supabase } from './supabase';
 
+import { getBookings } from './data-service';
+
 export async function signInAction() {
   await signIn('google', {
     redirectTo: '/account',
@@ -60,8 +62,8 @@ export async function deleteBooking(bookingId) {
   //   throw new Error('Booking could not be deleted');
   // }
 
-  console.log('Delete successfully', bookingId);
+  console.log('Delete successfully', bookingId, guestBookingIds);
 
   revalidatePath('/account/reservations');
-  return data;
+  // return data;
 }

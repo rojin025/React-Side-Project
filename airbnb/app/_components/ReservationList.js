@@ -5,9 +5,9 @@ import ReservationCard from '@/app/_components/ReservationCard';
 import deleteBooking from '@/app/_lib/action';
 
 async function ReservationList({ bookings }) {
-  async function handleDelete(bookingId) {
-    await deleteBooking(bookingId);
-  }
+  // async function handleDelete(bookingId) {
+  //   await deleteBooking(bookingId);
+  // }
 
   return (
     <ul className='space-y-6'>
@@ -15,7 +15,7 @@ async function ReservationList({ bookings }) {
         <ReservationCard
           booking={booking}
           key={booking.id}
-          onDelete={handleDelete}
+          // onDelete={handleDelete}
         />
       ))}
     </ul>
