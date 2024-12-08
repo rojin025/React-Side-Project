@@ -39,3 +39,29 @@ export async function updateGuest(formData) {
   console.log('updated successfully');
   revalidatePath('/account/profile');
 }
+
+export async function deleteBooking(bookingId) {
+  const session = await auth();
+  if (!session) throw new Error('User most Logged in.');
+
+  const guestBookings = await getBookings(session.user.guestId);
+  const guestBookingIds = guestBookings.map((booking) => booking.id);
+
+  if (!guestBookingIds.includes(bookingId))
+    throw new Error('Unathorized Delete process.');
+
+  // const { data, error } = await supabase
+  //   .from('bookings')
+  //   .delete()
+  //   .eq('id', bookingId);
+
+  // if (error) {
+  //   console.error(error);
+  //   throw new Error('Booking could not be deleted');
+  // }
+
+  console.log('Delete successfully', bookingId);
+
+  revalidatePath('/account/reservations');
+  return data;
+}
