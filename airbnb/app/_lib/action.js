@@ -1,6 +1,7 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 import { auth, signIn, signOut } from './auth';
 import { supabase } from './supabase';
 
@@ -66,4 +67,43 @@ export async function deleteBooking(bookingId) {
 
   revalidatePath('/account/reservations');
   // return data;
+}
+
+export async function updateBooking(formData) {
+  const bookingId = Number(formData.get('bookingId'));
+
+  // 1 Authed
+  const session = await auth();
+  if (!session) throw new Error('Must be logged in!');
+
+  // 2 Authorized
+  const guestBookings = await getBookings(session.user.guestId);
+  const guestBookingIds = guestBookings.map((booking) => booking.id);
+
+  if (!guestBookingIds.includes(bookingId))
+    throw new Error('Unauthorized Update Process.');
+
+  // 3 Build updated Data
+  const updatedBooking = {
+    numGuests: Number(formData.get('numGuests')),
+    observations: formData.get('observations').slice(0, 1000),
+  };
+
+  // 4 Mutate
+  const { error } = await supabase
+    .from('bookings')
+    .update(updatedBooking)
+    .eq('id', bookingId)
+    .select()
+    .single();
+
+  // 5 Error handling
+  if (error) throw new Error('Unable to update Booking');
+
+  // 6 Revalidate
+  revalidatePath(`/account/reservations/edit/${bookingId}`);
+  revalidatePath('/account/reservations');
+
+  // 7 Redirect
+  redirect('/account/reservations');
 }
