@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { updateGuest } from '../_lib/action';
 import { useFormStatus } from 'react-dom';
+import SubmitButton from './SubmitButton';
 
 function UpdateProfileForm({ children, guest }) {
   const [count, setCount] = useState();
@@ -54,27 +55,12 @@ function UpdateProfileForm({ children, guest }) {
         />
       </div>
 
-      <Button />
+      <div className='flex items-center justify-end gap-6'>
+        <SubmitButton pendingLabel='Updating Profile...'>
+          Update Profile
+        </SubmitButton>
+      </div>
     </form>
-  );
-}
-
-/**
- * 
-has to be client compoenent to use "useFormStatus Hook."
- */
-function Button() {
-  const { pending } = useFormStatus();
-
-  return (
-    <div className='flex items-center justify-end gap-6'>
-      <button
-        className='bg-accent-500 px-8 py-4 font-semibold text-primary-800 transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300'
-        disabled={pending}
-      >
-        {pending ? 'Updating...' : 'Update profile'}
-      </button>
-    </div>
   );
 }
 

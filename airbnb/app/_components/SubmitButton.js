@@ -2,7 +2,14 @@
 
 import { useFormStatus } from 'react-dom';
 
-export default function SubmitButton({ children, pendingLabel }) {
+/**
+ * 
+has to be client compoenent to use "useFormStatus Hook."
+ */
+export default function SubmitButton({
+  children,
+  pendingLabel = 'Updating...',
+}) {
   const { pending } = useFormStatus();
 
   return (
