@@ -15,7 +15,7 @@ export default async function Page() {
     <div className='grid grid-cols-5 items-center gap-x-24 gap-y-32 text-lg'>
       <div className='col-span-3'>
         <h1 className='mb-10 text-4xl font-medium text-accent-400'>
-          Welcome to The Wild Oasis
+          Welcome to The AirBnB
         </h1>
 
         <div className='space-y-8'>
@@ -60,7 +60,7 @@ export default async function Page() {
 
       <div className='col-span-3'>
         <h1 className='mb-10 text-4xl font-medium text-accent-400'>
-          Managed by our family since 1962
+          Managed by our family since 1980
         </h1>
 
         <div className='space-y-8'>
