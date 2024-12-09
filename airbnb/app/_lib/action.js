@@ -53,6 +53,8 @@ export async function deleteBooking(bookingId) {
   if (!guestBookingIds.includes(bookingId))
     throw new Error('Unathorized Delete process.');
 
+  await new Promise((res) => setTimeout(res, 2000));
+
   // const { data, error } = await supabase
   //   .from('bookings')
   //   .delete()

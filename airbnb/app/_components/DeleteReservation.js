@@ -1,6 +1,5 @@
 'use client';
 
-import { deleteBooking } from '@/app/_lib/action';
 import { useTransition } from 'react';
 
 import SpinnerMini from '@/app/_components/SpinnerMini';
@@ -11,7 +10,7 @@ function DeleteReservation({ bookingId, onDelete }) {
 
   function handleDelete() {
     if (confirm('Are you sure? Delete?'))
-      startTransition(() => deleteBooking(bookingId));
+      startTransition(() => onDelete(bookingId));
   }
 
   return (

@@ -2,20 +2,29 @@
 
 import ReservationCard from '@/app/_components/ReservationCard';
 
-import deleteBooking from '@/app/_lib/action';
+import { deleteBooking } from '@/app/_lib/action';
+import { useOptimistic } from 'react';
 
 async function ReservationList({ bookings }) {
-  // async function handleDelete(bookingId) {
-  //   await deleteBooking(bookingId);
-  // }
+  const [optimisticBookings, optimisticDelete] = useOptimistic(
+    bookings,
+    (curBookings, bookingId) => {
+      return curBookings.filter((booking) => booking.id !== bookingId);
+    }
+  );
+
+  async function handleDelete(bookingId) {
+    optimisticDelete(bookingId);
+    await deleteBooking(bookingId);
+  }
 
   return (
     <ul className='space-y-6'>
-      {bookings.map((booking) => (
+      {optimisticBookings.map((booking) => (
         <ReservationCard
           booking={booking}
           key={booking.id}
-          // onDelete={handleDelete}
+          onDelete={handleDelete}
         />
       ))}
     </ul>
