@@ -1,8 +1,30 @@
 'use client';
 
+import { createBooking } from '../_lib/action';
+import { useReservation } from './ReservationContext';
+
+import { differenceInDays } from 'date-fns';
+
 function ReservationForm({ cabin, user }) {
-  // CHANGE
-  const { maxCapacity } = cabin;
+  const { range, resetRange } = useReservation;
+  const { id, maxCapacity, regularPrice, discount } = cabin;
+
+  const startDate = range?.from;
+  const endDate = range?.to;
+
+  const numNights = differenceInDays(endDate, startDate);
+  const cabinPrice = numNights * (regularPrice - discount);
+
+  const bookingData = {
+    startDate,
+    endDate,
+    numNights,
+    cabinPrice,
+    cabinId: id,
+  };
+
+  console.log(bookingData);
+  const createBookingWithData = createBooking.bind(null, bookingData);
 
   return (
     <div className='scale-[1.01]'>
@@ -14,7 +36,10 @@ function ReservationForm({ cabin, user }) {
         </div>
       </div>
 
-      <form className='flex flex-col gap-5 bg-primary-900 px-16 py-10 text-lg'>
+      <form
+        action={createBookingWithData}
+        className='flex flex-col gap-5 bg-primary-900 px-16 py-10 text-lg'
+      >
         <div className='space-y-2'>
           <label htmlFor='numGuests'>How many guests?</label>
           <select

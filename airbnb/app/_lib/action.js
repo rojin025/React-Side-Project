@@ -17,6 +17,20 @@ export async function signOutAction() {
   await signOut({ redirectTo: '/' });
 }
 
+export async function createBooking(formData) {
+  console.log(formData);
+  // const { data, error } = await supabase
+  //   .from('bookings')
+  //   .insert([newBooking])
+
+  // if (error) {
+  //   console.error(error);
+  //   throw new Error('Booking could not be created');
+  // }
+
+  // return data;
+}
+
 /** we can name anything for Formdata provided by nextJS API */
 export async function updateGuest(formData) {
   // console.log('Update: ', formData);
