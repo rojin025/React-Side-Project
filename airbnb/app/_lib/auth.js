@@ -15,20 +15,20 @@ export const authConfig = {
       return !!auth?.user;
     },
     async signIn({ user }) {
-      user = { fullName: 'Demo Account', email: 'demo@mail.com' };
+      // user = { fullName: 'Demo Account', email: 'demo@mail.com' };
 
       try {
         const isGuest = await getGuest(user.email);
         console.log('Auth | Guest: ', isGuest);
 
-        // if (!isGuest) {
-        //   console.log('user:', user);
+        if (!isGuest) {
+          console.log('user:', user);
 
-        //   await createGuest({
-        //     email: user.email,
-        //     fullName: user.name,
-        //   });
-        // }
+          await createGuest({
+            email: user.email,
+            fullName: user.name,
+          });
+        }
 
         return true;
       } catch {
@@ -37,7 +37,8 @@ export const authConfig = {
     },
     async session({ session, user }) {
       // console.log(session);
-      const guest = await getGuest('demo@mail.com');
+      // const guest = await getGuest('demo@mail.com');
+      const guest = await getGuest(session.user.email);
       session.user.guestId = guest.id;
       return session;
     },

@@ -6,9 +6,10 @@ import { useReservation } from './ReservationContext';
 import { differenceInDays } from 'date-fns';
 
 function ReservationForm({ cabin, user }) {
-  const { range, resetRange } = useReservation;
+  const { range } = useReservation;
   const { id, maxCapacity, regularPrice, discount } = cabin;
 
+  console.log(range);
   const startDate = range?.from;
   const endDate = range?.to;
 
