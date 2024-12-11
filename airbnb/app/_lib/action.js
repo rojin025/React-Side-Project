@@ -17,8 +17,9 @@ export async function signOutAction() {
   await signOut({ redirectTo: '/' });
 }
 
-export async function createBooking(formData) {
+export async function createBooking(bookingData, formData) {
   console.log(formData);
+  console.log(bookingData);
   // const { data, error } = await supabase
   //   .from('bookings')
   //   .insert([newBooking])

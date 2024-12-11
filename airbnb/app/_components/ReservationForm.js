@@ -6,10 +6,9 @@ import { useReservation } from './ReservationContext';
 import { differenceInDays } from 'date-fns';
 
 function ReservationForm({ cabin, user }) {
-  const { range } = useReservation;
+  const { range, resetRange } = useReservation();
   const { id, maxCapacity, regularPrice, discount } = cabin;
 
-  console.log(range);
   const startDate = range?.from;
   const endDate = range?.to;
 
@@ -24,7 +23,6 @@ function ReservationForm({ cabin, user }) {
     cabinId: id,
   };
 
-  console.log(bookingData);
   const createBookingWithData = createBooking.bind(null, bookingData);
 
   return (
@@ -73,11 +71,15 @@ function ReservationForm({ cabin, user }) {
         </div>
 
         <div className='flex items-center justify-end gap-6'>
-          <p className='text-base text-primary-300'>Start by selecting dates</p>
-
-          <button className='bg-accent-500 px-8 py-4 font-semibold text-primary-800 transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300'>
-            Reserve now
-          </button>
+          {!(startDate && endDate) ? (
+            <p className='text-base text-primary-300'>
+              Start by selecting dates
+            </p>
+          ) : (
+            <button className='bg-accent-500 px-8 py-4 font-semibold text-primary-800 transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300'>
+              Reserve now
+            </button>
+          )}
         </div>
       </form>
     </div>
