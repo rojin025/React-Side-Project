@@ -13,6 +13,8 @@ export const metadata = {
 export default async function Page() {
   const session = await auth();
 
+  if (!session) throw new Error('Must login.');
+
   const guest = await getGuest(session?.user?.email!);
   // const guest = await getGuest('demo@mail.com');
 
