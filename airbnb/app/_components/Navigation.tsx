@@ -29,12 +29,12 @@ export default async function Navigation() {
               href='/account'
               className='flex items-center gap-4 transition-colors hover:text-accent-400'
             >
-              <img
+              {/* <img
                 className='h-8 rounded-full'
                 src={session.user.image}
                 alt={session.user.name!}
                 referrerPolicy='no-referrer'
-              />
+              /> */}
               {session?.user?.name?.split(' ').at(0)}
             </Link>
           ) : (
