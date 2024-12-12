@@ -1,6 +1,5 @@
-import Link from 'next/link';
 import { auth } from '@/app/_lib/auth';
-import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function Navigation() {
   const session = await auth();
@@ -30,7 +29,7 @@ export default async function Navigation() {
               href='/account'
               className='flex items-center gap-4 transition-colors hover:text-accent-400'
             >
-              <Image
+              <img
                 className='h-8 rounded-full'
                 src={session.user.image}
                 alt={session.user.name!}
