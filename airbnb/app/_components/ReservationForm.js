@@ -36,7 +36,10 @@ function ReservationForm({ cabin, user }) {
       </div>
 
       <form
-        action={createBookingWithData}
+        action={async (formData) => {
+          await createBookingWithData(formData);
+          resetRange();
+        }}
         className='flex flex-col gap-5 bg-primary-900 px-16 py-10 text-lg'
       >
         <div className='space-y-2'>

@@ -18,18 +18,34 @@ export async function signOutAction() {
 }
 
 export async function createBooking(bookingData, formData) {
-  console.log(formData);
-  console.log(bookingData);
-  // const { data, error } = await supabase
-  //   .from('bookings')
-  //   .insert([newBooking])
+  const session = await auth();
+  if (!session) throw new Error('Must logged in!');
 
-  // if (error) {
-  //   console.error(error);
-  //   throw new Error('Booking could not be created');
-  // }
+  console.log('Create Bookings : ', session);
 
-  // return data;
+  const newBooking = {
+    ...bookingData,
+    guestId: session.user.guestId,
+    numGuests: Number(formData.get('numGuests')),
+    observations: formData.get('observations').slice(0, 1000),
+    extraPrice: 0,
+    totalPrice: bookingData.cabinPrice,
+    isPaid: false,
+    hasBreakfast: false,
+    status: 'unconfirmed',
+  };
+
+  console.log(newBooking);
+
+  const { error } = await supabase.from('bookings').insert([newBooking]);
+
+  if (error) {
+    throw new Error('Booking could not be created');
+  }
+
+  revalidatePath(`/cabins/${bookingData.cabinId}`);
+
+  redirect('/cabins/thankyou');
 }
 
 /** we can name anything for Formdata provided by nextJS API */

@@ -39,7 +39,10 @@ export const authConfig = {
       // console.log(session);
       // const guest = await getGuest('demo@mail.com');
       const guest = await getGuest(session.user.email);
+      // console.log('Aut | Guest: ', guest);
+
       session.user.guestId = guest.id;
+      // console.log('Auth | Session : ', session);
       return session;
     },
   },
