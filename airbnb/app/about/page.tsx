@@ -20,22 +20,25 @@ export default async function Page() {
 
         <div className='space-y-8'>
           <p>
-            Where nature&apos;s beauty and comfortable living blend seamlessly.
-            Hidden away in the heart of the Italian Dolomites, this is your
-            paradise away from home. But it&apos;s not just about the luxury
-            cabins. It&apos;s about the experience of reconnecting with nature
-            and enjoying simple pleasures with family.
+            Nestled in the serene embrace of the Italian Dolomites, our
+            family-run retreat offers a harmonious blend of nature&apos;s beauty
+            and comfortable living. Built with love and a deep respect for the
+            land, this is more than a destination—it&apos;s a tradition of
+            sharing the joys of our mountains with yours.
           </p>
           <p>
-            Our {cabins.length} luxury cabins provide a cozy base, but the real
-            freedom and peace you&apos;ll find in the surrounding mountains.
-            Wander through lush forests, breathe in the fresh air, and watch the
-            stars twinkle above from the warmth of a campfire or your hot tub.
+            Our {cabins.length} luxurious cabins are designed to be a cozy
+            sanctuary, where you can reconnect with loved ones. But the true
+            magic lies beyond your doorstep, in the expansive forests, rolling
+            meadows, and starlit skies. This is where families come together,
+            creating memories around campfires, hiking scenic trails, or soaking
+            in private hot tubs under a canopy of stars.
           </p>
           <p>
-            This is where memorable moments are made, surrounded by
-            nature&apos;s splendor. It&apos;s a place to slow down, relax, and
-            feel the joy of being together in a beautiful setting.
+            What makes us special isn&apos;t just the stunning landscape but the
+            personal touch we bring to every stay. From the fresh-baked goods we
+            deliver to your door to the stories of our family&apos;s history in
+            the region, you&apos;ll feel like part of our extended family.
           </p>
         </div>
       </div>
@@ -54,7 +57,7 @@ export default async function Page() {
           src='/about-2.jpg'
           fill
           className='object-cover'
-          alt='Family that manages The Wild Oasis'
+          alt='Family that manages The AirBnB'
         />
       </div>
 
@@ -65,18 +68,18 @@ export default async function Page() {
 
         <div className='space-y-8'>
           <p>
-            Since 1962, The Wild Oasis has been a cherished family-run retreat.
+            Since 1980, The AirBnB has been a cherished family-run retreat.
             Started by our grandparents, this haven has been nurtured with love
             and care, passing down through our family as a testament to our
             dedication to creating a warm, welcoming environment.
           </p>
           <p>
-            Over the years, we&apos;ve maintained the essence of The Wild Oasis,
+            Over the years, we&apos;ve maintained the essence of The AirBnB,
             blending the timeless beauty of the mountains with the personal
             touch only a family business can offer. Here, you&apos;re not just a
             guest; you&apos;re part of our extended family. So join us at The
-            Wild Oasis soon, where tradition meets tranquility, and every visit
-            is like coming home.
+            AirBnB soon, where tradition meets tranquility, and every visit is
+            like coming home.
           </p>
 
           <div>

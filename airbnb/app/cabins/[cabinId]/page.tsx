@@ -57,13 +57,13 @@ export default async function Page({
             src={image}
             fill
             className='object-cover'
-            alt={`Cabin ${name}`}
+            alt={`Cabin  ${name}`}
           />
         </div>
 
         <div>
           <h3 className='mb-5 w-[150%] translate-x-[-254px] bg-primary-950 p-6 pb-1 text-7xl font-black text-accent-100'>
-            Cabin {name}
+            {name}
           </h3>
 
           <p className='mb-10 text-lg text-primary-300'>

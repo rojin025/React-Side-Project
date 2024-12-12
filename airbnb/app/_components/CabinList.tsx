@@ -19,10 +19,7 @@ interface CabinListProps {
 async function CabinList({ filter }: CabinListProps) {
   const cabins: CabinInterface[] | null = await getCabins();
 
-  if (!cabins) {
-    console.log('Cannot fetch Cabin.');
-    return null;
-  }
+  if (!cabins) return null;
 
   let displayedCabins;
 
@@ -38,7 +35,7 @@ async function CabinList({ filter }: CabinListProps) {
   else displayedCabins = cabins;
 
   return (
-    <div>
+    <div className='grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:gap-12 xl:gap-14'>
       {displayedCabins.length ? (
         displayedCabins.map((cabin: CabinInterface) => (
           <CabinCard cabin={cabin} key={cabin.id} />

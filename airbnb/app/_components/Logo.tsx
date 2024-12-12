@@ -13,6 +13,7 @@ function Logo() {
         width='60'
         quality={50}
         alt='The AirBnB logo'
+        className='rounded-full'
       />
       <span className='text-xl font-semibold text-primary-100'>The AirBnB</span>
     </Link>

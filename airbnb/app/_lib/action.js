@@ -84,22 +84,21 @@ export async function deleteBooking(bookingId) {
   if (!guestBookingIds.includes(bookingId))
     throw new Error('Unathorized Delete process.');
 
-  await new Promise((res) => setTimeout(res, 2000));
+  // await new Promise((res) => setTimeout(res, 2000)); // Testing
 
-  // const { data, error } = await supabase
-  //   .from('bookings')
-  //   .delete()
-  //   .eq('id', bookingId);
+  const { error } = await supabase
+    .from('bookings')
+    .delete()
+    .eq('id', bookingId);
 
-  // if (error) {
-  //   console.error(error);
-  //   throw new Error('Booking could not be deleted');
-  // }
+  if (error) {
+    console.error(error);
+    throw new Error('Booking could not be deleted');
+  }
 
   console.log('Delete successfully', bookingId, guestBookingIds);
 
   revalidatePath('/account/reservations');
-  // return data;
 }
 
 export async function updateBooking(formData) {
