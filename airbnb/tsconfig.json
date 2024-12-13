@@ -26,7 +26,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/_components/DateSelector.tsx"
+    "app/_components/DateSelector.tsx",
+    "app/account/profile/page.js"
   ],
   "exclude": ["node_modules"]
 }

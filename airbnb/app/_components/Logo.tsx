@@ -15,7 +15,9 @@ function Logo() {
         alt='The AirBnB logo'
         className='rounded-full'
       />
-      <span className='text-xl font-semibold text-primary-100'>The AirBnB</span>
+      <span className='hidden text-xl font-semibold text-primary-100 sm:block'>
+        The AirBnB
+      </span>
     </Link>
   );
 }

@@ -4,7 +4,7 @@ import bg from '@/public/bg.png';
 
 export default function Home() {
   return (
-    <main className='mt-24'>
+    <main className='mt-20 md:mt-24'>
       <Image
         src={bg}
         fill
@@ -15,7 +15,7 @@ export default function Home() {
       />
 
       <div className='relative z-10 text-center'>
-        <h1 className='mb-10 text-8xl font-normal tracking-tight text-primary-50'>
+        <h1 className='mb-10 text-4xl font-normal tracking-tight text-primary-50 md:text-8xl'>
           Welcome Home.
         </h1>
         <Link
