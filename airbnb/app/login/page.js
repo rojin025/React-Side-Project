@@ -1,4 +1,5 @@
 import SignInButton from '../_components/SignInButton';
+import SignInDemoButton from '@/app/_components/SignInDemoButton';
 
 export const metadata = {
   title: 'Login',
@@ -12,6 +13,7 @@ export default function Page() {
       </h2>
 
       <SignInButton />
+      <SignInDemoButton />
     </div>
   );
 }

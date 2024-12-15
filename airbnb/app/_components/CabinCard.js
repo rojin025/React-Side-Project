@@ -8,16 +8,16 @@ function CabinCard({ cabin }) {
 
   return (
     <div className='flex border border-primary-800'>
-      <div className='relative flex-1'>
+      <div className='relative w-2 flex-1'>
         <Image
           src={image}
           alt={`Cabin ${name}`}
           fill
           className='border-r border-primary-800 object-cover'
-        />
-      </div>
-
+        />{' '}
+      </div>{' '}
       <div className='flex-grow'>
+        {' '}
         <div className='bg-primary-950 px-7 pb-4 pt-5'>
           <h3 className='mb-3 text-2xl font-semibold text-accent-500'>
             Cabin {name}
@@ -46,7 +46,6 @@ function CabinCard({ cabin }) {
             <span className='text-primary-200'>/ night</span>
           </p>
         </div>
-
         <div className='border-t border-t-primary-800 bg-primary-950 text-right'>
           <Link
             href={`/cabins/${id}`}
