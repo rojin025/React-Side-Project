@@ -7,8 +7,9 @@ import Credentials from 'next-auth/providers/credentials';
 export const authConfig = {
   providers: [
     Credentials({
-      authorize(c) {
-        return { fullName: 'Demo Account', email: 'demo@mail.com' };
+      credentials: { password: { label: 'Password', type: 'password' } },
+      authorize(credentials) {
+        return { name: 'Demo Account', email: 'demo@mail.com', guestId: 1 };
       },
     }),
     Google({
@@ -21,8 +22,6 @@ export const authConfig = {
       return !!auth?.user;
     },
     async signIn({ user }) {
-      // user = { fullName: 'Demo Account', email: 'demo@mail.com' };
-
       try {
         const isGuest = await getGuest(user.email);
         console.log('Auth | Guest: ', isGuest);
@@ -41,17 +40,20 @@ export const authConfig = {
         return false;
       }
     },
-    async signInDemo({ user }) {
-      try {
-        // user = { fullName: 'Demo Account', email: 'demo@mail.com' };
+    // async signInDemo({ user }) {
+    //   try {
+    //     // user = { fullName: 'Demo Account', email: 'demo@mail.com' };
 
-        console.log('Auth | Guest: ', isGuest);
+    //     console.log('Auth | Guest: ', isGuest);
 
-        return true;
-      } catch {
-        return false;
-      }
-    },
+    //     const isGuest = await getGuest(user.email);
+    //     if (!isGuest) return false;
+
+    //     return true;
+    //   } catch {
+    //     return false;
+    //   }
+    // },
     async session({ session, user }) {
       // console.log(session);
       // const guest = await getGuest('demo@mail.com');
@@ -68,19 +70,10 @@ export const authConfig = {
   },
 };
 
-// export const providerMap = authConfig.providers.map((provider) => {
-//   if (typeof provider === 'function') {
-//     const providerData = provider();
-//     return { name: providerData.name };
-//   }
-
-//   return { name: provider.name };
-// });
-
 export const {
   auth,
   handlers: { GET, POST },
   signIn,
-  signInDemo,
+  // signInDemo,
   signOut,
 } = NextAuth(authConfig);

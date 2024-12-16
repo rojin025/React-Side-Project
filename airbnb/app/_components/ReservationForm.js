@@ -23,6 +23,8 @@ function ReservationForm({ cabin, user }) {
     cabinId: id,
   };
 
+  console.log(user);
+
   const createBookingWithData = createBooking.bind(null, bookingData);
 
   return (
@@ -31,7 +33,7 @@ function ReservationForm({ cabin, user }) {
         <p>Logged in as</p>
 
         <div className='flex items-center gap-4'>
-          <p>{user.name.split(' ')[0]}</p>
+          <p>{user.name}</p>
         </div>
       </div>
 

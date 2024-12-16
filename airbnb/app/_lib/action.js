@@ -14,8 +14,8 @@ export async function signInAction() {
 }
 
 export async function signInDemoAction() {
-  await signInDemo('credentials', {
-    user: { fullName: 'Demo Account', email: 'demo@mail.com' },
+  await signIn('credentials', {
+    // user: { fullName: 'Demo Account', email: 'demo@mail.com' },
     redirectTo: '/account',
   });
 }

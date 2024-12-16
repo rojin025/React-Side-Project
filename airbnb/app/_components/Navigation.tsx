@@ -24,7 +24,7 @@ export default async function Navigation() {
           </Link>
         </li>
         <li>
-          {session?.user?.image ? (
+          {session?.user ? (
             <Link
               href='/account'
               className='flex items-center gap-4 transition-colors hover:text-accent-400'
