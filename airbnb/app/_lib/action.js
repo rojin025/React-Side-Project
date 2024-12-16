@@ -2,13 +2,20 @@
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { auth, signIn, signOut } from './auth';
+import { auth, signIn, signOut, signInDemo } from './auth';
 import { supabase } from './supabase';
 
 import { getBookings } from './data-service';
 
 export async function signInAction() {
   await signIn('google', {
+    redirectTo: '/account',
+  });
+}
+
+export async function signInDemoAction() {
+  await signInDemo('credentials', {
+    user: { fullName: 'Demo Account', email: 'demo@mail.com' },
     redirectTo: '/account',
   });
 }
