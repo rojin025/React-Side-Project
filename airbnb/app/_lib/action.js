@@ -30,6 +30,13 @@ export async function createBooking(bookingData, formData) {
 
   console.log('Create Bookings : ', session);
 
+  const bookings = await getBookings(session.user.guestId);
+  console.log(bookings);
+
+  if (bookings.length > 10) {
+    throw new Error('Cannot create more then 10 Bookings.');
+  }
+
   const newBooking = {
     ...bookingData,
     guestId: session.user.guestId,
