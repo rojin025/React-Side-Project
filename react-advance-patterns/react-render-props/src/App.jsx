@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { faker } from "@faker-js/faker";
+import { de, faker } from "@faker-js/faker";
 import "./App.css";
-
-import List from "./components/List";
 
 const users = Array.from({ length: 20 }, () => {
   return {
@@ -31,39 +29,71 @@ function BookItem({ book }) {
   );
 }
 
+function UserItem({ user, defaultVisibilty }) {
+  const [isVisible, setIsVisisble] = useState(defaultVisibilty);
+
+  return (
+    <li
+      className="user"
+      // onMouseEnter={() => setIsVisisble(true)}
+      // onMouseOut={() => setIsVisisble(false)}
+    >
+      <p className="user-name">{user.username}</p>
+      {isVisible && (
+        <p className="user-birthdate">
+          <strong>DOB: </strong>
+          {user.birthdate}
+        </p>
+      )}
+    </li>
+  );
+}
+
 function List({ title, items, render }) {
   const [isOpen, setIsOpen] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const displayItems = isCollapsed ? items.slice(0, 3) : items;
+
+  function toggleOpen() {
+    setIsOpen((isOpen) => !isOpen);
+    setIsCollapsed(false);
+  }
 
   return (
     <div className="list-container">
       <div className="heading">
         <h2>{title}</h2>
-        <button>{isOpen ? <span>&or;</span> : <span>&and;</span>}</button>
+        <button onClick={toggleOpen}>
+          {isOpen ? <span>&or;</span> : <span>&and;</span>}
+        </button>
       </div>
 
       {isOpen && <ul className="list">{displayItems.map(render)}</ul>}
+
+      <button onClick={() => setIsCollapsed(!isCollapsed)}>
+        {isCollapsed ? `Show all ${items.length}` : "Show less"}
+      </button>
     </div>
   );
 }
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <div className="list-container">
+      <div>
         <h1>React Advance render pattern</h1>
         <div className="col-2">
           <div>
             <h3>Books</h3>
 
-            <p>
+            {/* <p>
               {books.map((book) => (
                 <BookItem key={book.title} book={book} />
               ))}
-            </p>
+            </p> */}
 
+            <h3>Users</h3>
             <List
               title="User"
               items={users}
