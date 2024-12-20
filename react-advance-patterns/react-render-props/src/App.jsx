@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { faker } from "@faker-js/faker";
+import "./App.css";
 
+import List from "./components/List";
+
+const users = Array.from({ length: 20 }, () => {
+  return {
+    username: faker.internet.username(),
+    password: faker.internet.password(),
+    birthdate: faker.date.birthdate()
+  };
+});
+
+// console.log("users: ", users);
+const books = Array.from({ length: 10 }, () => {
+  return {
+    title: faker.book.title(),
+    author: faker.book.author(),
+    genre: faker.book.genre()
+  };
+});
+
+function BookItem({ book }) {
+  return (
+    <li className="book">
+      <p className="book-title">{book.title}</p>
+      <p className="book-author">{book.author}</p>
+      <p className="book-genre">{book.genre}</p>
+    </li>
+  );
+}
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="list-container">
+        <h1>React Advance render pattern</h1>
+        <div className="col-2">
+          <div>
+            <h3>Books</h3>
+
+            <p>
+              {books.map((book) => (
+                <BookItem key={book.title} book={book} />
+              ))}
+            </p>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
