@@ -30,6 +30,23 @@ function BookItem({ book }) {
     </li>
   );
 }
+
+function List({ title, items, render }) {
+  const [isOpen, setIsOpen] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  return (
+    <div className="list-container">
+      <div className="heading">
+        <h2>{title}</h2>
+        <button>{isOpen ? <span>&or;</span> : <span>&and;</span>}</button>
+      </div>
+
+      {isOpen && <ul className="list">{displayItems.map(render)}</ul>}
+    </div>
+  );
+}
+
 function App() {
   const [count, setCount] = useState(0);
 
@@ -46,6 +63,18 @@ function App() {
                 <BookItem key={book.title} book={book} />
               ))}
             </p>
+
+            <List
+              title="User"
+              items={users}
+              render={(user) => (
+                <UserItem
+                  key={user.username}
+                  user={user}
+                  defaultVisibilty={false}
+                />
+              )}
+            />
           </div>
         </div>
       </div>
