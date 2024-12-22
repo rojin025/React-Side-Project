@@ -29,14 +29,14 @@ function BookItem({ book }) {
   );
 }
 
-function UserItem({ user, defaultVisibilty }) {
-  const [isVisible, setIsVisisble] = useState(defaultVisibilty);
+function UserItem({ user, defaultVisibility }) {
+  const [isVisible, setIsVisible] = useState(defaultVisibility);
 
   return (
     <li
       className="user"
-      // onMouseEnter={() => setIsVisisble(true)}
-      // onMouseOut={() => setIsVisisble(false)}
+      onMouseEnter={() => setIsVisible(true)}
+      onMouseLeave={() => setIsVisible(false)}
     >
       <p className="user-name">{user.username}</p>
       {isVisible && (
@@ -101,7 +101,7 @@ function App() {
                 <UserItem
                   key={user.username}
                   user={user}
-                  defaultVisibilty={false}
+                  defaultVisibility={false}
                 />
               )}
             />
