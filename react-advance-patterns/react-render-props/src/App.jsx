@@ -6,11 +6,12 @@ const users = Array.from({ length: 20 }, () => {
   return {
     username: faker.internet.username(),
     password: faker.internet.password(),
-    birthdate: faker.date.birthdate()
+    birthdate: faker.date.birthdate().toDateString()
   };
 });
 
-// console.log("users: ", users);
+console.log("users: ", users);
+
 const books = Array.from({ length: 10 }, () => {
   return {
     title: faker.book.title(),
