@@ -10,7 +10,7 @@ const users = Array.from({ length: 20 }, () => {
   };
 });
 
-console.log("users: ", users);
+// console.log("users: ", users);
 
 const books = Array.from({ length: 10 }, () => {
   return {
@@ -50,6 +50,7 @@ function UserItem({ user, defaultVisibility }) {
   );
 }
 
+// Render Pattern
 function List({ title, items, render }) {
   const [isOpen, setIsOpen] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -84,17 +85,14 @@ function App() {
     <>
       <div>
         <h1>React Advance render pattern</h1>
-        <div className="col-2">
-          <div>
-            <h3>Books</h3>
+        <div>
+          <div className="col-2">
+            <List
+              title="Books"
+              items={books}
+              render={(book) => <BookItem key={book.title} book={book} />}
+            />
 
-            {/* <p>
-              {books.map((book) => (
-                <BookItem key={book.title} book={book} />
-              ))}
-            </p> */}
-
-            <h3>Users</h3>
             <List
               title="User"
               items={users}
